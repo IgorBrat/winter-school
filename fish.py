@@ -35,26 +35,26 @@ class FishShop:
     salmons = []
     korops = []
     okuns = []
-    fresh_fishes["salmon"] = salmons
-    fresh_fishes["korop"] = korops
-    fresh_fishes["okun"] = okuns
     def add_fish_box(self, fish_box: FishBox) -> None:
         if fish_box.fish_info.name=="salmon":
             self.salmon_boxes.append(fish_box)
-            self.frozen_fish_boxes[fish_box.fish_info.name] = self.salmon_boxes
+            self.frozen_fish_boxes["salmon"] = self.salmon_boxes
         if fish_box.fish_info.name=="korop":
             self.korop_boxes.append(fish_box)
-            self.frozen_fish_boxes[fish_box.fish_info.name] = self.korop_boxes
+            self.frozen_fish_boxes["korop"] = self.korop_boxes
         if fish_box.fish_info.name=="okun":
             self.okun_boxes.append(fish_box)
-            self.frozen_fish_boxes[fish_box.fish_info.name] = self.okun_boxes
+            self.frozen_fish_boxes["okun"] = self.okun_boxes
     def add_fish(self, fish: Fish) -> None:
         if fish.fish_info.name=="salmon":
             self.salmons.append(fish)
+            self.fresh_fishes["salmon"]=self.salmons
         if fish.fish_info.name=="korop":
             self.korops.append(fish)
+            self.fresh_fishes["korop"]=self.korops
         if fish.fish_info.name=="okun":
             self.okuns.append(fish)
+            self.fresh_fishes["okun"]=self.okuns
     def sell_fish(self, name: str, weight: float, is_fresh: bool) -> Union[str, float]:
         sold = 0
         if is_fresh == True:
@@ -96,16 +96,6 @@ class FishShop:
                 break
             list.append((name, price))
         return sorted(list, key=lambda obj: obj[1])
-    # def __repr__(self) -> str:
-    #     return self.fish_info.__str__()
-    # def __str__(self) -> str:
-    #     return "Fish info ... name: {0}, price: {1}, origin: {2}, weight: {3}".format(self.fish_info.name, self.fish_info.price_in_uah_per_kilo, self.fish_info.origin, self.fish_info.weight)
-    # def print_fishes(self) -> None:
-    #     printed_list = []
-    #     for name in self.fresh_fishes:
-    #         for fish in self.fresh_fishes[name]:
-    #             printed_list.append((name, fish))
-    #     print(printed_list)
 
 fishery = FishShop()
 clear = lambda: os.system('cls')
