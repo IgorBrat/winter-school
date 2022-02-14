@@ -3,3 +3,5 @@
 
 # Flask Framework
 Flask==2.0
+Flask-SQLAlchemy==2.5.1
+Flask-marshmallow==0.14.0
